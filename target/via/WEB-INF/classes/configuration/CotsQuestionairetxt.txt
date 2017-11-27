@@ -1,0 +1,4 @@
+Type 1 for MQ. 
+Type 2 for Webservices.
+Type 3 for SFTP.
+Type 4 for File.

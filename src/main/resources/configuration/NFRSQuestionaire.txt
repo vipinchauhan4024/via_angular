@@ -1,0 +1,4 @@
+MessageSize: in KB?
+Volumes: per hour
+High Synchronous Dependency response time less than a second: Type 1 if Yes Type 0 if No
+Encryption: Type 1 if Yes Type 0 if No

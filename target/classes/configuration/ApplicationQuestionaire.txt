@@ -1,0 +1,6 @@
+Type 1 for -VGTA- application
+Type 2 for -COTS- application
+Type 3 for -SAP- application
+Type 4 for -VCOM- application
+Type 5 for -BI- application
+Type 6 for -External- application

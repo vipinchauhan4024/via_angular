@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>VIA Request</title>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+	text-align: left;
+}
+</style>
+
+
+
+ 
+
+</head>
+
+<script>
+	
+	function myFunction() {
+		//	alert("inside" + " " + document.getElementById("appType").value);
+		if ((document.getElementById("appType").value == "2")
+				|| (document.getElementById("appType").value == "6")) {
+			//	alert("inside 2");
+			document.getElementById("ifYes").style.display = "";
+		}
+		document.getElementById("recapp").style.display = "";
+		document.getElementById("recapp2").style.display = "";
+		document.getElementById("recapp3").style.display = "";
+
+	}
+	function myFunction2() {
+		if ((document.getElementById("recType").value == "2")
+				|| (document.getElementById("recType").value == "6")) {
+			document.getElementById("isSupp").style.display = "";
+		}
+	}
+	function myFunctionPrint() {
+
+		var supp = document.getElementById("appType").value;
+		var supr = document.getElementById("recType").value;
+		var val;
+		//alert(supp+" "+supr);
+		if ((supp == "1" || supp == "3" || supp == "4" || supp == "5")
+				&& (supr == "1" || supr == "3" || supr == "4" || supr == "5")) {
+			val = [ document.getElementById("appType").value + ":"
+					+ document.getElementById("msgSize").value + ":"
+					+ document.getElementById("volPerHour").value + ":"
+					+ document.getElementById("depType").value + ":"
+					+ document.getElementById("encType").value + ":"
+					+ document.getElementById("recType").value + ":"
+					+ document.getElementById("formatType").value + ":"
+					+ document.getElementById("routeType").value ];
+
+		} else if (supp == "1" || supp == "3" || supp == "4" || supp == "5") {
+			supr = document.getElementById("suprType").value;
+			val = [ document.getElementById("appType").value + ":"
+					+ document.getElementById("msgSize").value + ":"
+					+ document.getElementById("volPerHour").value + ":"
+					+ document.getElementById("depType").value + ":"
+					+ document.getElementById("encType").value + ":"
+					+ document.getElementById("recType").value + ":" + supr
+					+ ":" + document.getElementById("formatType").value + ":"
+					+ document.getElementById("routeType").value ];
+		}
+
+		else if (supr == "1" || supr == "3" || supr == "4" || supr == "5") {
+			supp = document.getElementById("suppType").value;
+			val = [ document.getElementById("appType").value + ":"
+					+ document.getElementById("msgSize").value + ":"
+					+ document.getElementById("volPerHour").value + ":"
+					+ document.getElementById("depType").value + ":"
+					+ document.getElementById("encType").value + ":" + supp
+					+ ":" + document.getElementById("recType").value + ":"
+					+ document.getElementById("formatType").value + ":"
+					+ document.getElementById("routeType").value ];
+
+		} else {
+			supr = document.getElementById("suprType").value;
+			supp = document.getElementById("suppType").value;
+			//  alert(supp+" "+supr);
+			val = [ document.getElementById("appType").value + ":"
+					+ document.getElementById("msgSize").value + ":"
+					+ document.getElementById("volPerHour").value + ":"
+					+ document.getElementById("depType").value + ":"
+					+ document.getElementById("encType").value + ":" + supp
+					+ ":" + document.getElementById("recType").value + ":"
+					+ supr + ":" + document.getElementById("formatType").value
+					+ ":" + document.getElementById("routeType").value ];
+
+		}
+		document.getElementById("output").value = val;
+		document.getElementById("display").innerHTML = val;
+	}
+</script>
+
+<body ng-controller="shiftAllowanceController" ng-submit="processForm()">
+
+		
+		<nav class="navbar navbar-default">
+		
+			<a class="navbar-brand" href="#">
+				<img src="VIA.jpg" style="display: inline-block;">
+			</a>
+		
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Volvo Integration Application</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li ><a href="index.html">Home</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Request Integration Pattern</a></li>
+				</ul>
+			</div>
+			
+			
+		</nav>
+
+		 <img src="Brands_VG.png" /> 
+
+
+
+
+
+	<h5>Enter below required details for Integration Pattern:</h5>
+	
+
+	<form name="form">
+
+		<div id="integrationQuestions" class="well well-sm" style="margin-top:1px; margin-bottom:10px;">
+		
+			
+		 	<table style="align:centre; width:80%" class="table table-condensed table-bordered" align="center">
+
+				<tr>
+					<td><label for="listShiftType"><b>Please select the application type:</b></label></td>
+					<td><select ng-model="appType" name="appType"
+						id="appType">
+							<option ng-repeat="st in  listShiftType" value="{{st.id}}">{{st.name}}</option>
+					</select></td>
+				</tr>
+
+				<tr>
+					<td><label for="listGrade"><b>Message size in KB:</b></label></td>
+					<td><input ng-model="msgSize" type="text" name="msgSize"
+						id="msgSize"></td>
+				</tr>
+
+
+				<tr>
+					<td><label for="listTimePeriod"><b>Volumes per
+								Hour:</b></label></td>
+					<td><input ng-model="volPerHour" type="text" name="volPerHour"
+						id="volPerHour"></td>
+				</tr>
+
+				<tr>
+					<td scope="col" align="left"><strong><span
+							class="style6">High Synchronous Dependency</span> &nbsp;</strong></td>
+					<TD align="left"><select ng-model="depType" name="depType"
+						id="depType">
+							<option></option>
+							<option value="1">YES</option>
+							<option value="0">NO</option>
+					</select></TD>
+				</tr>
+
+				<tr>
+					<td scope="col" align="left"><strong><span
+							class="style6">Encryption required?</span> &nbsp;</strong></td>
+					<td align="left"><select ng-model="encType" name="encType"
+						id="encType" onchange="myFunction()">
+							<option></option>
+							<option value="1">YES</option>
+							<option value="0">NO</option>
+					</select></td>
+				</tr>
+				<tr id="recapp" style="display: none;">
+					<td style="width: 650px;"><strong><span>select
+								receiving application type</span> &nbsp;</strong></td>
+					<td align="left"><select ng-model="recType" name="recType"
+						id="recType" onchange="myFunction2()">
+							<option></option>
+							<option value="1">VGTA</option>
+							<option value="2">COTS</option>
+							<option value="3">SAP</option>
+							<option value="4">VCOM</option>
+							<option value="5">BI</option>
+							<option value="6">External</option>
+					</select></td>
+				</tr>
+
+				<tr id="ifYes" style="display: none;">
+					<td style="width: 650px;"><strong><span>Connectivity
+								supported by sending application</span> &nbsp;</strong></td>
+					<td><select ng-model="suppType" name="suppType" id="suppType">
+							<option></option>
+							<option value="1">MQ</option>
+							<option value="2">Web Service</option>
+							<option value="3">SFTP</option>
+							<option value="4">FILE</option>
+					</select></td>
+				</tr>
+				<tr id="isSupp" style="display: none;">
+					<td style="width: 650px;"><strong><span>Connectivity
+								supported by receiving application</span> &nbsp;</strong></td>
+					<td align="left"><select ng-model="suprType" name="suprType"
+						id="suprType">
+							<option></option>
+							<option value="1">MQ</option>
+							<option value="2">Web Service</option>
+							<option value="3">SFTP</option>
+							<option value="4">FILE</option>
+					</select></td>
+				</tr>
+
+				<tr id="recapp2" style="display: none;">
+					<td style="width: 650px;"><strong><span>Is
+								sending application message format same as receiving application
+								format?</span> &nbsp;</strong></td>
+					<td align="left"><select ng-model="formatType"
+						name="formatType" id="formatType">
+							<option></option>
+							<option value="1">YES</option>
+							<option value="0">NO</option>
+					</select></td>
+				</tr>
+
+				<tr id="recapp3" style="display: none;">
+					<td style="width: 650px;"><strong><span>Routing
+								required?</span> &nbsp;</strong></td>
+					<td align="left"><select ng-model="routeType" name="routeType"
+						id="routeType">
+							<option></option>
+							<option value="1">YES</option>
+							<option value="0">NO</option>
+					</select></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		
+		<div align="center">
+			
+			<a href='requestIntegrationForm.html'
+				class="btn btn-default"><span>Search Again!</span></a>
+			
+			<button class="btn btn-default" type="submit" ng-click="submit()" >
+				 Submit!
+			</button>
+		</div>
+		
+		<div id="integrationAnswers" class="well well-sm" style="margin-top:10px; margin-bottom:10px;">
+		<b>Computed Integration Pattern :</b>
+			        <span >
+			        {{responePattern}}
+			        </span>
+		</div>
+		
+		
+		
+		
+	</form>
+
+	<script type="text/javascript">
+		var myapp = angular.module('myapp', []);
+
+		
+
+		myapp
+				.controller(
+						'shiftAllowanceController',
+						function($scope, $window, $http) {
+							
+							$http
+							    .get(
+											'http://localhost:8080/via/rest/json/patterndata/fetchAllApplicationType')
+									.success(
+											function(response) {
+												$scope.listShiftType = response;
+												console.log("Hello "
+														+ $scope.listShiftType
+														+ "listShiftType");
+											});
+							
+
+							$scope.processForm = function() {
+								$http(
+										{
+											method : 'POST',
+											url : 'http://localhost:8080/via/rest/json/patterndata/submitIntegrationRequest',
+											data : $
+													.param({
+														"appType" : $scope.appType,
+														"msgSize" : $scope.msgSize,
+														"volPerHour" : $scope.volPerHour,
+														"depType" : $scope.depType,
+														"encType" : $scope.encType,
+														"recType" : $scope.recType,
+														"suppType" : $scope.suppType,
+														"suprType" : $scope.suprType,
+														"formatType" : $scope.formatType,
+														"routeType" : $scope.routeType
+													}),
+											headers : {
+												'Content-Type' : 'application/x-www-form-urlencoded'
+											}
+										}).success(function(data) {
+											
+											$scope.responePattern = data;
+											
+								});
+
+								/* 
+								$scope.appType = "";
+								$scope.msgSize = "";
+								$scope.volPerHour = "";
+								$scope.depType = "";
+								$scope.encType = "";
+								$scope.recType = "";
+								$scope.suppType = "";
+								$scope.suprType = "";
+								$scope.formatType = "";
+								$scope.routeType = ""; */
+								
+							};
+
+						});
+	</script>
+	
+	<nav class="navbar navbar-default">
+	</nav>
+	
+</body>
+</html>
