@@ -1,4 +1,0 @@
-MessageSize:100000:1
-Volumes:1000000:1
-Synchronous:1:0:1000
-Encryption:1:0

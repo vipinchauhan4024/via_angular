@@ -1,4 +1,0 @@
-connectivity:VCOM
-conversion:GEBIS,VCOMMQGW
-transformation:IIB,GEBIS
-crossref:xref

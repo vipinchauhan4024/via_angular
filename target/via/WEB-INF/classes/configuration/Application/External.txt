@@ -1,4 +1,0 @@
-connectivity:MQ,SFTP,Webservices
-conversion:GEBIS
-transformation:IIB,GEBIS
-crossref:xref
