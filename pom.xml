@@ -46,7 +46,7 @@
 		
 		
 		<!-- DERBY JARS - NOT ABLE TO FIND THIS REPOSITORY FOR THIS. ADDED IN M2 REPOSITORY MANUALLY -->
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbyclient</artifactId>
 			<version>${derby.version}</version>
@@ -55,7 +55,7 @@
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 			<version>${derby.version}</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- JERSEY JSON jars -->
 		<dependency>
